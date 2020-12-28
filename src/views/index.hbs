@@ -1,0 +1,17 @@
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>🥰 Nurture</title>
+</head>
+
+<body>
+  <h1>{{ name }}</h1>
+  <ul>
+    {{#each entries}}
+    <li><b>{{this.formattedDate}}</b>: {{this.content}}</li>
+    {{/each}}
+  </ul>
+</body>
+
+</html>
