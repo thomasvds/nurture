@@ -20,11 +20,13 @@ export class EntriesService {
     return this.getOne(id);
   }
 
-  getMany(): Promise<Entry[]> {
+  getManyByPersonId(personId: string, take = 100): Promise<Entry[]> {
     return this.entriesRepository.find({
+      where: { personId },
       order: {
         date: 'DESC',
       },
+      take,
     });
   }
 

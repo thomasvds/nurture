@@ -6,13 +6,16 @@ import {
   ParseUUIDPipe,
   Post,
   Render,
+  UseGuards,
 } from '@nestjs/common';
+import { TokenGuard } from 'src/guards/token.guard';
 import { CreatePersonDto } from './dtos/create-person.dto';
 
 import { PeopleService } from './people.service';
 import { Person } from './person.entity';
 
 @Controller('people')
+@UseGuards(TokenGuard)
 export class PeopleController {
   constructor(private readonly peopleService: PeopleService) {}
 

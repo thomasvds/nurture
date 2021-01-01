@@ -1,5 +1,5 @@
 {
-  "name": "karma-back",
+  "name": "nurture-back",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -12,7 +12,7 @@
     "start": "nest start",
     "dev": "npm run start:dev",
     "dev:tunnel": "bash ./scripts/tunnel.sh",
-    "dev:psql": "psql -d karmaDB --u karmaDBUser -h localhost",
+    "dev:psql": "psql -d nurtureDB --u nurtureDBUser -h localhost",
     "dev:db:reset": "bash ./scripts/db/reset.sh",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
@@ -42,6 +42,7 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.3",
+    "twilio": "^3.54.1",
     "typeorm": "^0.2.29"
   },
   "devDependencies": {

@@ -20,7 +20,7 @@ export class Person extends AbstractEntity {
   birthdate: Date;
 
   @OneToMany(() => Entry, (entry) => entry.person)
-  entries: Entry;
+  entries: Entry[];
 
   @Expose()
   get name(): string {

@@ -36,7 +36,21 @@ export class PeopleService {
       .getOne();
   }
 
-  getOneByNickname(nickname: string): Promise<Person> {
-    return this.peopleRepository.findOne({ where: { nickname } });
+  async getOrCreateOneByName({
+    firstName,
+    lastName,
+  }: {
+    firstName: string;
+    lastName: string;
+  }): Promise<Person> {
+    let person = await this.peopleRepository.findOne({
+      where: { firstName, lastName },
+    });
+
+    if (!person) {
+      person = await this.createOne({ firstName, lastName });
+    }
+
+    return person;
   }
 }
