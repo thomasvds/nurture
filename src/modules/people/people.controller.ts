@@ -5,7 +5,6 @@ import {
   Param,
   ParseUUIDPipe,
   Post,
-  Render,
   UseGuards,
 } from '@nestjs/common';
 import { TokenGuard } from 'src/guards/token.guard';
@@ -30,7 +29,6 @@ export class PeopleController {
   }
 
   @Get(':id')
-  @Render('index')
   getOne(@Param('id', ParseUUIDPipe) id: string): Promise<Person> {
     return this.peopleService.getOne(id);
   }
