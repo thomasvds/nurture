@@ -7,6 +7,7 @@ import * as ormConfig from './ormconfig';
 import { PeopleModule } from './modules/people/people.module';
 import { EntriesModule } from './modules/entries/entries.module';
 import { TwilioModule } from './modules/twilio/twilio.module';
+import { TagsModule } from './modules/tags/tags.module';
 
 dotenv.config({
   path: `.${process.env.NODE_ENV || 'development'}.env`,
@@ -18,6 +19,7 @@ dotenv.config({
     PeopleModule,
     EntriesModule,
     TwilioModule,
+    TagsModule,
   ],
 })
 export class AppModule {}

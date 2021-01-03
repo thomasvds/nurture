@@ -1,5 +1,6 @@
 import { Transform } from 'class-transformer';
-import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsString, IsUUID } from 'class-validator';
+import { EntryCategory } from '../enums/category.enum';
 
 export class CreateEntryDto {
   @IsUUID()
@@ -8,6 +9,14 @@ export class CreateEntryDto {
   @IsString()
   @IsNotEmpty()
   readonly content: string;
+
+  @IsEnum(EntryCategory)
+  readonly category: EntryCategory;
+
+  @IsString()
+  @IsNotEmpty()
+  @Transform((title) => title || 'Note')
+  readonly title?: string;
 
   @IsString()
   @Transform((date) => date || new Date().toLocaleDateString('en-US'))

@@ -12,10 +12,7 @@ export class EntriesService {
   ) {}
 
   async createOne(createEntryDto: CreateEntryDto): Promise<Entry> {
-    const { id } = await this.entriesRepository.save({
-      ...createEntryDto,
-      title: 'Note',
-    });
+    const { id } = await this.entriesRepository.save(createEntryDto);
 
     return this.getOne(id);
   }

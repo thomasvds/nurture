@@ -6,6 +6,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { EntriesService } from '../entries/entries.service';
+import { EntryCategory } from '../entries/enums/category.enum';
 import { PeopleService } from '../people/people.service';
 import { TwilioSmsDto } from './dto/sms.dto';
 import { TwilioService } from './twilio.service';
@@ -71,6 +72,8 @@ export class TwilioController {
       });
 
       this.entriesService.createOne({
+        category: EntryCategory.NOT_SPECIFIED,
+        title: 'Note',
         date: date.trim(),
         personId: person.id,
         content: content.trim(),

@@ -1,5 +1,12 @@
 import { Type } from 'class-transformer';
-import { IsDate, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import {
+  IsDate,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  ValidateNested,
+} from 'class-validator';
+import { SimpleObjectDto } from '../../../common/simple-object.dto';
 
 export class CreatePersonDto {
   @IsDate()
@@ -19,4 +26,8 @@ export class CreatePersonDto {
   @IsString()
   @IsNotEmpty()
   readonly lastName: string;
+
+  @ValidateNested({ each: true })
+  @Type(() => SimpleObjectDto)
+  readonly tags?: SimpleObjectDto[];
 }
