@@ -34,6 +34,9 @@ export class Person extends AbstractEntity {
   @JoinTable()
   tags: Tag[];
 
+  @ManyToMany(() => Entry, (entry) => entry.mentions)
+  mentions: Entry[];
+
   @Expose()
   get name(): string {
     return `${this.firstName} ${this.lastName}`;

@@ -1,5 +1,12 @@
 import { Expose } from 'class-transformer';
-import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+} from 'typeorm';
 
 import { AbstractEntity } from '../../common/abstract.entity';
 import { Person } from '../people/person.entity';
@@ -29,6 +36,10 @@ export class Entry extends AbstractEntity {
 
   @Column()
   content: string;
+
+  @ManyToMany(() => Person, (person) => person.mentions)
+  @JoinTable()
+  mentions: Person[];
 
   @Expose()
   get formattedDate(): string {

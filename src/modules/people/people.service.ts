@@ -23,6 +23,7 @@ export class PeopleService {
         firstName: 'ASC',
       },
       relations: ['tags'],
+      // relations: ['tags', 'mentions'],
     });
   }
 
