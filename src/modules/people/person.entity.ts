@@ -11,6 +11,7 @@ import {
 import { AbstractEntity } from '../../common/abstract.entity';
 import { Entry } from '../entries/entry.entity';
 import { Tag } from '../tags/tag.entity';
+import { PersonStage } from './enums/stage.enum';
 
 @Entity({ name: 'people' })
 @Unique('UQ_PEOPLE', ['firstName', 'lastName'])
@@ -20,6 +21,12 @@ export class Person extends AbstractEntity {
 
   @Column()
   lastName: string;
+
+  @Column({ nullable: true })
+  description: string;
+
+  @Column({ default: PersonStage.NOT_SPECIFIED })
+  stage: PersonStage;
 
   @Column({ type: 'boolean', default: false })
   favorite: boolean;

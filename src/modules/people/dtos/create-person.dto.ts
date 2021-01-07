@@ -1,12 +1,14 @@
 import { Type } from 'class-transformer';
 import {
   IsDate,
+  IsEnum,
   IsNotEmpty,
   IsOptional,
   IsString,
   ValidateNested,
 } from 'class-validator';
 import { SimpleObjectDto } from '../../../common/simple-object.dto';
+import { PersonStage } from '../enums/stage.enum';
 
 export class CreatePersonDto {
   @IsDate()
@@ -17,7 +19,7 @@ export class CreatePersonDto {
   @IsString()
   @IsNotEmpty()
   @IsOptional()
-  readonly nickname?: string;
+  readonly description?: string;
 
   @IsString()
   @IsNotEmpty()
@@ -26,6 +28,10 @@ export class CreatePersonDto {
   @IsString()
   @IsNotEmpty()
   readonly lastName: string;
+
+  @IsEnum(PersonStage)
+  @IsOptional()
+  readonly stage?: PersonStage;
 
   @ValidateNested({ each: true })
   @Type(() => SimpleObjectDto)

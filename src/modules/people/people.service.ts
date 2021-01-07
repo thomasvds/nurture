@@ -23,7 +23,6 @@ export class PeopleService {
         firstName: 'ASC',
       },
       relations: ['tags'],
-      // relations: ['tags', 'mentions'],
     });
   }
 
@@ -32,9 +31,11 @@ export class PeopleService {
       .createQueryBuilder('p')
       .where('p.id = :id', { id })
       .leftJoinAndSelect('p.entries', 'entries')
+      .leftJoinAndSelect('p.mentions', 'mentions')
       .leftJoinAndSelect('p.tags', 'tags')
       .orderBy({
-        'entries.created_at': 'DESC',
+        'entries.date': 'DESC',
+        'mentions.date': 'DESC',
       })
       .getOne();
   }

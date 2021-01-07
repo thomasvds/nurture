@@ -10,7 +10,7 @@
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
-    "dev": "npm run start:dev",
+    "dev": "PORT=3000 npm run start:dev",
     "dev:tunnel": "bash ./scripts/tunnel.sh",
     "dev:psql": "psql -d nurtureDB --u nurtureDBUser -h localhost",
     "dev:db:reset": "bash ./scripts/db/reset.sh",
