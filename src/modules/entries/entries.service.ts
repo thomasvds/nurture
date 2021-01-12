@@ -27,6 +27,16 @@ export class EntriesService {
     });
   }
 
+  getManyByPeriod(from: number, to: number): Promise<Entry[]> {
+    const toISO = (ts: number) => new Date(ts).toISOString();
+
+    return this.entriesRepository
+      .createQueryBuilder('e')
+      .select('e')
+      .where(`e.date BETWEEN '${toISO(from)}' AND '${toISO(to)}'`)
+      .getMany();
+  }
+
   async getOne(id: string): Promise<Entry> {
     const entry = await this.entriesRepository.findOne({ where: { id } });
 
