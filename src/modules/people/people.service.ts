@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreatePersonDto } from './dtos/create-person.dto';
+import { UpsertPersonDto } from './dtos/upsert-person.dto';
 import { Person } from './person.entity';
 
 @Injectable()
@@ -11,7 +11,7 @@ export class PeopleService {
     private readonly peopleRepository: Repository<Person>,
   ) {}
 
-  async createOne(createPersonDto: CreatePersonDto): Promise<Person> {
+  async createOne(createPersonDto: UpsertPersonDto): Promise<Person> {
     const { id } = await this.peopleRepository.save(createPersonDto);
     return this.getOne(id);
   }
@@ -56,5 +56,14 @@ export class PeopleService {
     }
 
     return person;
+  }
+
+  async updateOne(
+    id: string,
+    updatePersonDto: UpsertPersonDto,
+  ): Promise<Person> {
+    const person = await this.getOne(id);
+    await this.peopleRepository.save({ ...person, ...updatePersonDto });
+    return this.getOne(id);
   }
 }

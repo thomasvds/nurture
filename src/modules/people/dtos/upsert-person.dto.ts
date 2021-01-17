@@ -10,7 +10,7 @@ import {
 import { SimpleObjectDto } from '../../../common/simple-object.dto';
 import { PersonStage } from '../enums/stage.enum';
 
-export class CreatePersonDto {
+export class UpsertPersonDto {
   @IsDate()
   @IsOptional()
   @Type(() => Date)
